@@ -3,11 +3,9 @@ package com.hari.sb.httpdemo.controller;
 import com.hari.sb.httpdemo.dao.Product;
 import com.hari.sb.httpdemo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,21 @@ public class MainController {
     @GetMapping("/get/{type}")
     public ResponseEntity<List<Product>> getProductsType(@PathVariable("type") String type) {
         List<Product> prodList = productService.getProductList(type);
+        return ResponseEntity.ok(prodList);
+    }
+
+    @GetMapping(value = "/get/static/{type}", produces = {MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<Product>> getStaticProductsType(@PathVariable("type") String type) {
+        List<Product> prodList = productService.getProductStaticList(type);
+        return ResponseEntity.ok(prodList);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<Product>> getProductsByType(@RequestParam(value="type", required = false)
+                                                            // here required acts as optional
+                                                               String type) {
+        List<Product> prodList = productService.getProductListByType(type);
         return ResponseEntity.ok(prodList);
     }
 }
