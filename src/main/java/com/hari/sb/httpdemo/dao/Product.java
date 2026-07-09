@@ -5,6 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDate;
 
 @Entity
 @Data /* @ToString, @EqualsAndHashCode, @Getter, @Setter(all non-static fields),
@@ -26,4 +32,5 @@ public class Product {
     @Column(name = "product_type")
     @NonNull
     String productType;
+
 }
