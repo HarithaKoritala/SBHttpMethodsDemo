@@ -22,7 +22,7 @@ public class MainController {
         return ResponseEntity.ok(prodList);
     }
 
-    @GetMapping(value = "/get/static/{type}", produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "/get/static/{type}", produces = {//MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Product>> getStaticProductsType(@PathVariable("type") String type) {
         List<Product> prodList = productService.getProductStaticList(type);
