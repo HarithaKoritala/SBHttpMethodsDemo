@@ -36,4 +36,11 @@ public class MainController {
         List<Product> prodList = productService.getProductListByType(type);
         return ResponseEntity.ok(prodList);
     }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAllProductsWithPagination(
+            @RequestParam("pageNumber") int pageNum, @RequestParam("pageSize") int pageSize) {
+        return ResponseEntity.ok(productService.findProductsWithPagination(pageNum, pageSize));
+    }
+
 }
